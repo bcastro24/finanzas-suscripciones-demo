@@ -3,96 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Control Financiero · Plataformas de suscripción (DEMO)</title>
+<title>Mi Control · Finanzas de plataformas (DEMO)</title>
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
-<aside>
-  <div class="logo">◈ <b>Mi Control</b><small>Finanzas de plataformas</small></div>
-  <p class="side-h">Plataformas</p>
-  <button class="plat active" data-plat="onlyfans">● OnlyFans <span class="tag ok">activa</span></button>
-  <button class="plat off" disabled>○ Fansly <span class="tag">próx.</span></button>
-  <button class="plat off" disabled>○ Patreon <span class="tag">próx.</span></button>
-  <button class="plat add" id="btnAdd">＋ Agregar plataforma</button>
-  <p class="side-h">Secciones</p>
-  <nav>
-    <a href="#" data-tab="dash" class="active">📊 Dashboard</a>
-    <a href="#" data-tab="estado">🧾 Estado financiero</a>
-    <a href="#" data-tab="conc">⚖️ Conciliación</a>
-    <a href="#" data-tab="cargar">⬆️ Cargar reportes</a>
-    <a href="#" data-tab="config">⚙️ Parámetros</a>
-  </nav>
-  <div class="demo-badge">DEMO · datos ficticios<br>Todo se procesa en tu navegador; nada se sube a ningún servidor.</div>
-</aside>
+<div id="login">
+  <form id="loginForm" class="login-card">
+    <div class="logo big">◈ <b>Mi Control</b><small>Finanzas de plataformas de suscripción</small></div>
+    <label>Usuario<input id="lUser" value="demo" autocomplete="off"></label>
+    <label>Clave<input id="lPass" type="password" value="demo" autocomplete="off"></label>
+    <button class="btn" type="submit">Ingresar</button>
+    <p class="hint">Acceso de demostración con datos ficticios. Esta versión no valida credenciales ni envía datos a ningún servidor.</p>
+  </form>
+</div>
 
-<main>
-  <header><h1 id="title">Dashboard</h1><div class="period">Periodo: <b id="periodo">—</b></div></header>
-
-  <section id="tab-dash" class="tab active">
-    <div class="kpis" id="kpis"></div>
-    <div class="grid2">
-      <div class="card"><h3>Ingresos mensuales (bruto vs. neto esperado vs. recibido)</h3><canvas id="chMes"></canvas></div>
-      <div class="card"><h3>Ingresos por tipo</h3><canvas id="chTipo"></canvas></div>
-    </div>
-    <div class="card"><h3>Diferencia no explicada por mes (esperado − recibido)</h3><canvas id="chDif" height="90"></canvas></div>
-  </section>
-
-  <section id="tab-estado" class="tab">
-    <div class="card"><h3>Estado financiero mensual</h3>
-      <p class="hint">Bruto − comisión plataforma = neto plataforma · − participación de agencia − egresos = <b>neto esperado para ti</b>.</p>
-      <div class="tablewrap"><table id="tblEstado"></table></div></div>
-  </section>
-
-  <section id="tab-conc" class="tab">
-    <div class="card"><h3>Conciliación: esperado vs. depositado en tu banco</h3>
-      <p class="hint" id="concHint"></p>
-      <div id="alertBox"></div>
-      <div class="tablewrap"><table id="tblConc"></table></div></div>
-  </section>
-
-  <section id="tab-cargar" class="tab">
-    <div class="grid2">
-      <div class="card"><h3>1 · Reporte de ganancias de la plataforma</h3>
-        <p class="hint">CSV/XLSX descargado del panel de la plataforma (Statements / Earnings) por quien administre la cuenta.</p>
-        <label class="drop" id="dropEarn">Arrastra aquí o <u>elige archivo</u><input type="file" id="fileEarn" accept=".csv,.xlsx,.xls" hidden></label>
-        <div id="statEarn" class="stat"></div></div>
-      <div class="card"><h3>2 · Estado de cuenta bancario</h3>
-        <p class="hint">Movimientos del banco donde recibes los pagos (CSV/XLSX con fecha, concepto y monto).</p>
-        <label class="drop" id="dropBank">Arrastra aquí o <u>elige archivo</u><input type="file" id="fileBank" accept=".csv,.xlsx,.xls" hidden></label>
-        <div id="statBank" class="stat"></div></div>
-    </div>
-    <div class="card"><h3>Datos de ejemplo</h3>
-      <p class="hint">Sin archivos reales todavía, carga el set ficticio incluido (12 meses, con retenciones simuladas en algunos meses).</p>
-      <button class="btn" id="btnDemo">Cargar datos de demostración</button>
-      <button class="btn ghost" id="btnClear">Limpiar todo</button></div>
-  </section>
-
-  <section id="tab-config" class="tab">
-    <div class="card"><h3>Parámetros</h3>
-      <div class="form">
-        <label>Comisión de la plataforma (%)<input type="number" id="pPlat" value="20" min="0" max="100" step="0.5"></label>
-        <label>Participación de la agencia / administrador (%)<input type="number" id="pAg" value="30" min="0" max="100" step="0.5"></label>
-        <label>Egresos propios mensuales (USD) <small>(impuestos, gastos de contenido…)</small><input type="number" id="pEgr" value="0" min="0" step="10"></label>
-        <label>Desfase de pago (meses)<small>la plataforma paga el mes siguiente</small><input type="number" id="pLag" value="1" min="0" max="3"></label>
-        <label>Tolerancia de diferencia (%)<input type="number" id="pTol" value="2" min="0" max="50" step="0.5"></label>
+<div id="app" hidden>
+  <aside id="side">
+    <div class="logo">◈ <b>Mi Control</b><small>Finanzas de plataformas</small></div>
+    <p class="side-h">Principal</p>
+    <nav>
+      <a href="#/resumen" data-r="resumen">📊 Resumen</a>
+      <a href="#/reportes" data-r="reportes">📑 Reportes</a>
+    </nav>
+    <p class="side-h">Administración</p>
+    <nav>
+      <a href="#/cargas" data-r="cargas">⬆️ Cargas de archivos</a>
+      <a href="#/plataformas" data-r="plataformas">🧩 Plataformas</a>
+      <a href="#/egresos" data-r="egresos">💸 Egresos</a>
+    </nav>
+    <p class="side-h">Ayuda</p>
+    <nav><a href="#/ayuda" data-r="ayuda">❓ Cómo funciona</a></nav>
+    <div class="demo-badge">DEMO · datos ficticios<br>Los datos viven solo en este navegador.</div>
+    <button class="link" id="btnLogout">Salir</button>
+  </aside>
+  <main>
+    <header>
+      <div><h1 id="title">Resumen</h1><div class="crumb" id="crumb"></div></div>
+      <div class="filters" id="filters">
+        <label>Plataforma<select id="fPlat"></select></label>
+        <label>Desde<input type="month" id="fFrom"></label>
+        <label>Hasta<input type="month" id="fTo"></label>
+        <button class="btn ghost sm" id="fClear">Todo el periodo</button>
       </div>
-      <p class="hint">Los parámetros recalculan todo al instante. El % de agencia debe coincidir con tu contrato.</p>
-    </div>
-  </section>
-</main>
-
-<dialog id="dlgAdd"><h3>Agregar plataforma</h3>
-  <p>Cada plataforma se define con un <b>mapeo de columnas</b>: qué columna del reporte es la fecha, el tipo de ingreso, el bruto, la comisión y el neto.</p>
-  <table class="map"><tr><th>Campo</th><th>OnlyFans (activo)</th><th>Nueva plataforma</th></tr>
-  <tr><td>Fecha</td><td>Fecha / Date</td><td><i>seleccionable</i></td></tr>
-  <tr><td>Tipo</td><td>Descripción / Type</td><td><i>seleccionable</i></td></tr>
-  <tr><td>Bruto</td><td>Monto bruto / Amount</td><td><i>seleccionable</i></td></tr>
-  <tr><td>Comisión</td><td>Comisión / Fee</td><td><i>seleccionable</i></td></tr>
-  <tr><td>Neto</td><td>Neto / Net</td><td><i>seleccionable</i></td></tr></table>
-  <p class="hint">En el demo solo está activa OnlyFans; la estructura ya admite más plataformas.</p>
-  <button class="btn" onclick="document.getElementById('dlgAdd').close()">Cerrar</button></dialog>
+    </header>
+    <div id="view"></div>
+  </main>
+</div>
+<div id="toast"></div>
+<dialog id="dlg"></dialog>
+<script src="services.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

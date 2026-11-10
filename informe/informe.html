@@ -23,28 +23,41 @@ figure{margin:10px 0;page-break-inside:avoid}figure img{width:100%;border:1px so
 <tr><td>Otras plataformas (Fansly, Patreon, etc.)</td><td class="ok">Viable</td><td>Cada una se agrega definiendo el mapeo de columnas de su reporte. En las que tengan API se podrá automatizar.</td></tr></table>
 <div class="box warn"><b>Importante:</b> el formato exacto del reporte real puede variar. El demo detecta columnas por nombre (fecha, descripción, bruto, comisión, neto) y se ajusta con el mapeo; antes de dar el sistema por validado debe probarse con un reporte real descargado de la cuenta.</div>
 
-<h2>3. Cómo funciona</h2>
-<ol><li><b>Cargar</b> el reporte de ganancias de la plataforma (mensual) y el extracto bancario.</li>
-<li><b>Calcular</b> el estado financiero: bruto − comisión de plataforma = neto de plataforma; − participación de la agencia = <i>neto esperado para ti</i>; − egresos propios = resultado.</li>
-<li><b>Conciliar</b>: cada mes de ingresos se compara con el depósito que debió llegar (con el desfase de pago configurado). Si la diferencia supera la tolerancia, el mes se marca «Revisar» y se calcula el monto retenido sin explicar.</li>
-<li><b>Actuar</b>: con el mes y el monto, se solicita a la agencia el detalle de descuentos.</li></ol>
-<p>Privacidad: el reporte se procesa solo con <b>montos e indicadores</b>; no se necesitan ni se muestran datos de suscriptores. En el demo todo se calcula dentro del navegador y no se envía a ningún servidor.</p>
+<h2>3. Qué es el sistema</h2>
+<p>Un sistema web pequeño, con acceso, menús y reportes filtrables, que reúne en un solo lugar los ingresos de las plataformas y los contrasta con el banco. Quien lo usa puede <b>entrar a cada reporte, filtrar por plataforma y por periodo, exportar a CSV o imprimir</b>, y administrar plataformas, cargas y egresos.</p>
+<table><tr><th style="width:24%">Menú</th><th>Qué se hace allí</th></tr>
+<tr><td><b>Resumen</b></td><td>Indicadores del periodo y gráficos de ingresos, tipos y diferencias.</td></tr>
+<tr><td><b>Reportes</b></td><td>Catálogo de seis reportes: Ingresos por mes · Ingresos por tipo · Estado financiero · Conciliación bancaria · Diferencias a reclamar · Egresos. Todos con filtros, totales, gráfico, exportación CSV e impresión.</td></tr>
+<tr><td><b>Cargas de archivos</b></td><td>Subir el reporte de ganancias de la plataforma y el extracto bancario (CSV/Excel), con historial y opción de eliminar una carga.</td></tr>
+<tr><td><b>Plataformas</b></td><td>Contrato de cada plataforma (comisión, % de la agencia, desfase de pago, tolerancia), activar/desactivar y agregar nuevas.</td></tr>
+<tr><td><b>Egresos</b></td><td>Registrar y eliminar gastos propios; alimentan el resultado del estado financiero.</td></tr>
+<tr><td><b>Cómo funciona</b></td><td>Guía de uso dentro del sistema.</td></tr></table>
+<p><b>Flujo:</b> definir el contrato → cargar reporte de la plataforma y extracto del banco → ver reportes → si un mes no cuadra (supera la tolerancia), el sistema lo marca «Revisar», calcula el monto retenido sin explicar y <b>genera el texto de reclamo</b> con los meses y montos para enviarlo a la agencia.</p>
+<p>Privacidad: se trabaja solo con <b>montos e indicadores</b>; no se necesitan datos de suscriptores. En el demo, lo que se carga se guarda solo en el navegador y no se envía a ningún servidor.</p>
 
 <h2 class="pb">4. Pantallas del demo</h2>
-<p>Los datos son ficticios: 12 meses de 2025, con retenciones simuladas en cuatro meses para ilustrar las alertas.</p>
-<h3>4.1 Dashboard</h3>
-<figure><img src="capturas/dash.png"><figcaption>Indicadores principales (bruto, neto de plataforma, neto esperado, recibido en banco, diferencia sin explicar), evolución mensual, composición por tipo de ingreso y diferencia por mes. Selector de plataformas a la izquierda: OnlyFans activa; espacios para otras.</figcaption></figure>
-<h3 class="pb">4.2 Estado financiero</h3>
-<figure><img src="capturas/estado.png"><figcaption>Estado mensual con totales: del bruto al resultado, con comisión de plataforma, participación de la agencia y egresos propios configurables.</figcaption></figure>
-<h3>4.3 Conciliación</h3>
-<figure><img src="capturas/conc.png"><figcaption>Comparación esperado vs. recibido. Los meses fuera de tolerancia se marcan «Revisar» y la alerta resume el monto sin explicar y los meses a reclamar. En el ejemplo: US$ 2.111,68 en 4 meses.</figcaption></figure>
-<h3 class="pb">4.4 Carga de reportes</h3>
-<figure><img src="capturas/cargar.png"><figcaption>Carga por arrastre o selección de archivo (CSV/XLSX) para el reporte de la plataforma y para el extracto bancario; incluye datos de demostración.</figcaption></figure>
-<h3>4.5 Parámetros</h3>
-<figure><img src="capturas/config.png"><figcaption>Comisión de plataforma, participación de la agencia (según contrato), egresos propios, desfase de pago y tolerancia. Todo recalcula al instante.</figcaption></figure>
+<p>Datos ficticios: 12 meses de 2025, con retenciones simuladas en cuatro meses para ilustrar las alertas. Demo publicado: <b>https://bcastro24.github.io/finanzas-suscripciones-demo/</b> (acceso de muestra: usuario y clave «demo»).</p>
+<h3>4.1 Acceso</h3>
+<figure><img src="capturas/login.png"><figcaption>Pantalla de acceso (de muestra; una versión real tendría usuarios y doble factor).</figcaption></figure>
+<h3 class="pb">4.2 Resumen</h3>
+<figure><img src="capturas/resumen.png"><figcaption>Menú lateral, filtros de plataforma y periodo arriba a la derecha, indicadores, evolución mensual (bruto, esperado, recibido), ingresos por tipo y diferencia por mes.</figcaption></figure>
+<h3 class="pb">4.3 Catálogo de reportes</h3>
+<figure><img src="capturas/reportes.png"><figcaption>Seis reportes disponibles; cada tarjeta abre el reporte con los filtros activos.</figcaption></figure>
+<h3>4.4 Conciliación bancaria</h3>
+<figure><img src="capturas/r-conciliacion.png"><figcaption>Esperado vs. recibido por mes. Alerta con el total sin explicar (US$ 2.111,68 en 4 meses), filtro por estado, totales, exportación a CSV e impresión.</figcaption></figure>
+<h3 class="pb">4.5 Diferencias a reclamar</h3>
+<figure><img src="capturas/r-alertas.png"><figcaption>Solo los meses fuera de tolerancia, con el botón «Generar texto de reclamo» que arma el mensaje para la agencia con meses y montos.</figcaption></figure>
+<h3>4.6 Estado financiero</h3>
+<figure><img src="capturas/r-estado.png"><figcaption>Del bruto al resultado: comisión de plataforma, participación de la agencia y egresos propios.</figcaption></figure>
+<h3 class="pb">4.7 Ingresos por tipo</h3>
+<figure><img src="capturas/r-tipos.png"><figcaption>Suscripciones, propinas, mensajes y más por mes, con filtro por tipo de ingreso.</figcaption></figure>
+<h3>4.8 Administración</h3>
+<figure><img src="capturas/cargas.png"><figcaption>Cargas de archivos: selección de plataforma y tipo de archivo, historial y datos de ejemplo.</figcaption></figure>
+<figure><img src="capturas/plataformas.png"><figcaption>Plataformas: contrato por plataforma; OnlyFans activa, Fansly y Patreon listas para activarse; alta de nuevas.</figcaption></figure>
+<figure><img src="capturas/egresos.png"><figcaption>Egresos: registro de gastos propios y listado del periodo con total.</figcaption></figure>
 
 <h2>5. Arquitectura propuesta para la versión real</h2>
-<p>El demo es una página estática (HTML + JavaScript). Para uso continuo se propone un microdesarrollo con servicios pequeños:</p>
+<p>El demo es una aplicación web estática (HTML + JavaScript) cuyo código ya está separado en módulos que equivalen a los servicios futuros (almacenamiento, ingesta, finanzas y conciliación). Para uso continuo se propone pasarlos a un microdesarrollo con servicios pequeños:</p>
 <table><tr><th>Servicio</th><th>Función</th></tr>
 <tr><td>Ingesta</td><td>Recibe CSV/XLSX, valida formato, aplica el mapeo de columnas de cada plataforma y guarda movimientos normalizados.</td></tr>
 <tr><td>Finanzas</td><td>Calcula estado financiero, indicadores y comparativos por mes y plataforma.</td></tr>
@@ -54,12 +67,12 @@ figure{margin:10px 0;page-break-inside:avoid}figure img{width:100%;border:1px so
 
 <h2>6. Limitaciones del demo y siguientes pasos</h2>
 <ul><li>Datos ficticios; falta validar con un reporte real de OnlyFans y un extracto real del banco.</li>
-<li>Sin inicio de sesión ni almacenamiento: al cerrar la página, los datos se pierden (intencional para el demo).</li>
+<li>El acceso es de muestra y los datos se guardan solo en el navegador de quien los carga (no hay base de datos ni usuarios reales todavía).</li>
 <li>La conciliación asume un único pago por mes; se debe ajustar si hay varios pagos, comisiones bancarias o cambio de moneda.</li>
 <li>La participación de la agencia debe tomarse del contrato real; si hay otros descuentos pactados, se agregan como parámetros.</li></ul>
 <h3>Plan sugerido</h3>
 <ol><li>Descargar un reporte real y el extracto del mismo periodo; ajustar el mapeo y validar la conciliación.</li>
-<li>Agregar inicio de sesión, base de datos y almacenamiento seguro.</li>
+<li>Agregar usuarios con doble factor, base de datos y almacenamiento seguro.</li>
 <li>Agregar historial de cargas, exportación a Excel/PDF de la conciliación y un reclamo tipo para la agencia.</li>
 <li>Sumar plataformas adicionales según se necesiten.</li></ol>
 <p class="sub">Código del demo: repositorio privado <code>bcastro24/finanzas-suscripciones-demo</code>.</p>

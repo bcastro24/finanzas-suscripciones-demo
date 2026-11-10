@@ -1,0 +1,29 @@
+:root{--bg:#0f1420;--panel:#171e2e;--panel2:#1d2639;--line:#2a3550;--tx:#e8edf7;--mut:#8e9bb8;--acc:#4f8cff;--ok:#2ecc8f;--warn:#ffb020;--bad:#ff5d6c}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);display:flex;min-height:100vh}
+aside{width:250px;background:var(--panel);border-right:1px solid var(--line);padding:18px 14px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:auto}
+.logo{font-size:18px;margin-bottom:14px}.logo small{display:block;color:var(--mut);font-size:12px}
+.side-h{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin:18px 6px 6px}
+.plat{display:flex;justify-content:space-between;width:100%;background:none;border:1px solid transparent;color:var(--tx);padding:9px 10px;border-radius:8px;cursor:pointer;font-size:14px}
+.plat.active{background:var(--panel2);border-color:var(--line)}.plat.off{opacity:.5;cursor:default}.plat.add{color:var(--acc);justify-content:flex-start}
+.tag{font-size:10px;background:#2a3550;border-radius:10px;padding:1px 7px;color:var(--mut)}.tag.ok{background:#16452f;color:var(--ok)}
+nav a{display:block;color:var(--tx);text-decoration:none;padding:9px 10px;border-radius:8px}nav a:hover{background:var(--panel2)}nav a.active{background:var(--acc);color:#fff}
+.demo-badge{margin-top:24px;font-size:11px;color:var(--warn);border:1px dashed var(--warn);border-radius:8px;padding:8px}
+main{flex:1;padding:22px 28px;min-width:0}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+h1{margin:0;font-size:22px}.period{color:var(--mut)}.tab{display:none}.tab.active{display:block}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.kpi small{color:var(--mut);display:block}.kpi b{font-size:24px;display:block;margin-top:4px}.kpi span{font-size:12px;color:var(--mut)}
+.kpi.bad b{color:var(--bad)}.kpi.ok b{color:var(--ok)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}.card h3{margin:0 0 10px;font-size:15px}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:14px}.tab#tab-cargar .grid2{grid-template-columns:1fr 1fr}
+@media(max-width:1000px){body{flex-direction:column}aside{width:auto;height:auto;position:static}.grid2,.tab#tab-cargar .grid2{grid-template-columns:1fr}}
+.hint{color:var(--mut);margin:0 0 10px}.tablewrap{overflow:auto}
+table{border-collapse:collapse;width:100%}th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase}tfoot td{font-weight:700;border-top:2px solid var(--line)}
+.neg{color:var(--bad)}.pos{color:var(--ok)}.pill{padding:2px 9px;border-radius:10px;font-size:12px;font-weight:600}.pill.ok{background:#16452f;color:var(--ok)}.pill.bad{background:#4a1d27;color:var(--bad)}.pill.na{background:#2a3550;color:var(--mut)}
+.alert{background:#3a1c25;border:1px solid var(--bad);border-radius:10px;padding:12px;margin-bottom:12px}.alert.good{background:#14382a;border-color:var(--ok)}
+.drop{display:block;border:2px dashed var(--line);border-radius:12px;padding:30px;text-align:center;cursor:pointer;color:var(--mut)}.drop:hover,.drop.over{border-color:var(--acc);color:var(--tx)}
+.stat{margin-top:10px;color:var(--ok)}.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:14px}.btn.ghost{background:none;border:1px solid var(--line);color:var(--tx);margin-left:6px}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.form label{display:flex;flex-direction:column;gap:4px}.form small{color:var(--mut)}
+input[type=number]{background:var(--panel2);border:1px solid var(--line);color:var(--tx);padding:8px;border-radius:8px;font-size:14px}
+dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);border-radius:12px;max-width:560px}dialog::backdrop{background:#000a}.map td,.map th{text-align:left}
+canvas{max-width:100%}

@@ -1,0 +1,5 @@
+datos-reales/
+*.xlsx
+*.xls
+.DS_Store
+!demo-datos/*.csv
